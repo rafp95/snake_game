@@ -14,6 +14,7 @@ namespace Snake
     {
         private bool _isStarted;
         private Model.Snake _snake;
+        private Model.Fruit _fruit;
         public Form1()
         {
             InitializeComponent();
@@ -28,6 +29,11 @@ namespace Snake
                 pole_gry.CreateGraphics().Clear(Color.Black);
                 _snake.MoveSnake();
                 DrawSnake(pole_gry.CreateGraphics(), new SolidBrush(Color.Aqua));
+                DrawFruit(pole_gry.CreateGraphics(), new SolidBrush(Color.Red));
+                if (_fruit.RandomNew(_snake.X[0], _snake.Y[0]))
+                {
+                    _snake.AddFruit();
+                }
             }
             else
             {
@@ -42,8 +48,10 @@ namespace Snake
         {
             this._isStarted = true;
             _snake = new Model.Snake(pole_gry.Width, pole_gry.Height);
+            _fruit = new Model.Fruit(_snake.Segemnt);
         }
 
+        #region draw snake
         public void DrawSnake(Graphics g, Brush b)
         {
             for (int i = 0; i < _snake.Segmenty; i++)
@@ -51,6 +59,14 @@ namespace Snake
                 g.FillRectangle(b, _snake.X[i], _snake.Y[i], _snake.Segemnt, _snake.Segemnt);
             }
         }
+        #endregion
+
+        #region draw fruit
+        public void DrawFruit(Graphics g, Brush b)
+        {
+            g.FillRectangle(b, _fruit.X, _fruit.Y, _fruit.Segment, _fruit.Segment);
+        }
+        #endregion
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {

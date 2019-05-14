@@ -40,30 +40,39 @@ namespace Snake.Model
         #region move snake
         public void MoveSnake()
         {
-            //for (int i = Segmenty; i > 0; i--)
-            //{
-            //    X[i] = X[i - 1];
-            //    Y[i] = Y[i - 1];
-            //}
-            //switch (Move)
-            //{
-            //    case Model.Move.PRAWO:
-            //        X[0] = X[0] + Segemnt;
-            //        break;
-            //    case Model.Move.LEWO:
-            //        X[0] = X[0] - Segemnt;
-            //        break;
-            //    case Model.Move.GORA:
-            //        Y[0] = Y[0] - Segemnt;
-            //        break;
-            //    case Model.Move.DOL:
-            //        Y[0] = Y[0] + Segemnt;
-            //        break;
-            //}
-            //if (X[0] < 0) { X[0] = Segemnt * 19; }
-            //if (X[0] > Segemnt * 20) { X[0] = 0; }
-            //if (Y[0] < 0) { Y[0] = Segemnt * 19; }
-            //if (Y[0] > Segemnt * 20) { Y[0] = 0; }
+            for (int i = Segmenty; i > 0; i--)
+            {
+                X[i] = X[i - 1];
+                Y[i] = Y[i - 1];
+            }
+            switch (Move)
+            {
+                case Model.Move.PRAWO:
+                    X[0] = X[0] + Segemnt;
+                    break;
+                case Model.Move.LEWO:
+                    X[0] = X[0] - Segemnt;
+                    break;
+                case Model.Move.GORA:
+                    Y[0] = Y[0] - Segemnt;
+                    break;
+                case Model.Move.DOL:
+                    Y[0] = Y[0] + Segemnt;
+                    break;
+            }
+            if (X[0] < 0) { X[0] = Segemnt * 19; }
+            if (X[0] > Segemnt * 20) { X[0] = 0; }
+            if (Y[0] < 0) { Y[0] = Segemnt * 19; }
+            if (Y[0] > Segemnt * 20) { Y[0] = 0; }
+        }
+        #endregion
+
+        #region eat fruit
+        public void AddFruit()
+        {
+            X[Segmenty] = X[Segmenty - 1];
+            Y[Segmenty] = Y[Segmenty - 1];
+            Segmenty++;
         }
         #endregion
     }
