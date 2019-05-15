@@ -112,9 +112,9 @@ namespace Snake
             this.timer1.Interval += 10;
         }
 
-        private void szybcieToolStripMenuItem_Click(object sender, EventArgs e)
+        private void szybciejToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(this.timer1.Interval > 10)
+            if (this.timer1.Interval > 10)
             {
                 this.timer1.Interval -= 10;
             }
