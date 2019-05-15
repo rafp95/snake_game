@@ -24,7 +24,7 @@ namespace Snake.Model
             Y = r.Next(0, 20) * Segment;
         }
 
-        public bool RandomNew(int glowa, int ogon)
+        public bool RandomNewFruit(int glowa, int ogon)
         {
             if(X == glowa && Y == ogon)
             {

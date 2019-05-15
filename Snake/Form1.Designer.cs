@@ -77,12 +77,14 @@
             this.pauzaToolStripMenuItem.Name = "pauzaToolStripMenuItem";
             this.pauzaToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.pauzaToolStripMenuItem.Text = "Pauza";
+            this.pauzaToolStripMenuItem.Click += new System.EventHandler(this.pauzaToolStripMenuItem_Click);
             // 
             // restartToolStripMenuItem
             // 
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
             this.restartToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.restartToolStripMenuItem.Text = "Restart";
+            this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
             // 
             // szybkośćGryToolStripMenuItem
             // 
@@ -98,12 +100,14 @@
             this.wolniejToolStripMenuItem.Name = "wolniejToolStripMenuItem";
             this.wolniejToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.wolniejToolStripMenuItem.Text = "Wolniej";
+            this.wolniejToolStripMenuItem.Click += new System.EventHandler(this.wolniejToolStripMenuItem_Click);
             // 
             // szybcieToolStripMenuItem
             // 
             this.szybcieToolStripMenuItem.Name = "szybcieToolStripMenuItem";
             this.szybcieToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.szybcieToolStripMenuItem.Text = "Szybcie";
+            this.szybcieToolStripMenuItem.Text = "Szybciej";
+            this.szybcieToolStripMenuItem.Click += new System.EventHandler(this.szybcieToolStripMenuItem_Click);
             // 
             // pole_gry
             // 

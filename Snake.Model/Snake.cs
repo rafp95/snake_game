@@ -75,5 +75,17 @@ namespace Snake.Model
             Segmenty++;
         }
         #endregion
+
+        public bool SnakeAlive()
+        {
+            for (int i = 1; i < Segmenty; i++)
+            {
+                if(X[0] == X[i] && Y[0] == Y[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

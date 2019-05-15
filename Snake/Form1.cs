@@ -20,6 +20,7 @@ namespace Snake
             InitializeComponent();
             this._isStarted = false;
             this.timer1.Enabled = true;
+            this.pauzaToolStripMenuItem.Enabled = false;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -30,9 +31,13 @@ namespace Snake
                 _snake.MoveSnake();
                 DrawSnake(pole_gry.CreateGraphics(), new SolidBrush(Color.Aqua));
                 DrawFruit(pole_gry.CreateGraphics(), new SolidBrush(Color.Red));
-                if (_fruit.RandomNew(_snake.X[0], _snake.Y[0]))
+                if (_fruit.RandomNewFruit(_snake.X[0], _snake.Y[0]))
                 {
                     _snake.AddFruit();
+                }
+                if (!_snake.SnakeAlive())
+                {
+                    _isStarted = false;
                 }
             }
             else
@@ -49,12 +54,14 @@ namespace Snake
             this._isStarted = true;
             _snake = new Model.Snake(pole_gry.Width, pole_gry.Height);
             _fruit = new Model.Fruit(_snake.Segemnt);
+            this.pauzaToolStripMenuItem.Enabled = true;
         }
 
         #region draw snake
         public void DrawSnake(Graphics g, Brush b)
         {
-            for (int i = 0; i < _snake.Segmenty; i++)
+            g.FillRectangle(new SolidBrush(Color.Green), _snake.X[0], _snake.Y[0], _snake.Segemnt, _snake.Segemnt);
+            for (int i = 1; i < _snake.Segmenty; i++)
             {
                 g.FillRectangle(b, _snake.X[i], _snake.Y[i], _snake.Segemnt, _snake.Segemnt);
             }
@@ -74,6 +81,43 @@ namespace Snake
             if (e.KeyCode == Keys.Down) _snake.Move = Model.Move.DOL;
             if (e.KeyCode == Keys.Right) _snake.Move = Model.Move.PRAWO;
             if (e.KeyCode == Keys.Left) _snake.Move = Model.Move.LEWO;
+        }
+
+        private void pauzaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this._isStarted)
+            {
+                this._isStarted = false;
+                this.pauzaToolStripMenuItem.Text = "Wznów";
+                pole_gry.CreateGraphics().Clear(Color.Black);
+            }
+            else
+            {
+                this._isStarted = true;
+                this.pauzaToolStripMenuItem.Text = "Pauza";
+            }
+        }
+
+        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this._isStarted)
+            {
+                _snake = new Model.Snake(pole_gry.Width, pole_gry.Height);
+                _fruit = new Model.Fruit(_snake.Segemnt);
+            }
+        }
+
+        private void wolniejToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.timer1.Interval += 10;
+        }
+
+        private void szybcieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(this.timer1.Interval > 10)
+            {
+                this.timer1.Interval -= 10;
+            }
         }
     }
 }
